@@ -1,5 +1,4 @@
 ---
-import { ClientRouter } from "astro:transitions";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import FloatingCTA from "../components/FloatingCTA.astro";
@@ -70,7 +69,6 @@ const schema = {
     <meta name="twitter:card" content="summary_large_image" />
     <title>{pageTitle}</title>
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
-    <ClientRouter />
   </head>
   <body>
     <a class="skip-link" href="#main">跳到主要內容</a>

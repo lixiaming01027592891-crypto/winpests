@@ -42,16 +42,12 @@ import { site } from "../data/site";
 </BaseLayout>
 
 <script>
-  document.addEventListener("astro:page-load", () => {
-    const form = document.querySelector<HTMLFormElement>("[data-mail]");
-    if (!form || form.dataset.bound === "true") return;
-    form.dataset.bound = "true";
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const data = new FormData(form);
-      const body = `姓名：${data.get("name")}\n電話：${data.get("phone")}\n\n${data.get("note")}`;
-      const href = `mailto:x24htry@gmail.com?subject=${encodeURIComponent("文盈除蟲｜勘查需求")}&body=${encodeURIComponent(body)}`;
-      window.location.href = href;
-    });
+  const form = document.querySelector<HTMLFormElement>("[data-mail]");
+  form?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const body = `姓名：${data.get("name")}\n電話：${data.get("phone")}\n\n${data.get("note")}`;
+    const href = `mailto:x24htry@gmail.com?subject=${encodeURIComponent("文盈除蟲｜勘查需求")}&body=${encodeURIComponent(body)}`;
+    window.location.href = href;
   });
 </script>
