@@ -1,0 +1,22 @@
+---
+import { nav, site } from "../data/site";
+---
+
+<footer class="site-footer">
+  <div>
+    <strong>{site.brand}</strong>
+    {site.legalName}　統編 {site.taxId}<br />
+    {site.address.line}<br />
+    {site.hours}
+  </div>
+  <nav aria-label="頁尾">
+    {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+    <a href="/privacy/">隱私權</a>
+  </nav>
+  <div>
+    <a href={site.phoneHref}>{site.phoneDisplay}</a><br />
+    <a href={site.lineUrl} target="_blank" rel="noreferrer">LINE 諮詢</a><br />
+    <a href={`mailto:${site.email}`}>{site.email}</a>
+    <p>© {new Date().getFullYear()} {site.legalName}</p>
+  </div>
+</footer>

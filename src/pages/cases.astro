@@ -1,0 +1,32 @@
+---
+import { Picture } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { cases } from "../data/site";
+import { photos, type PhotoKey } from "../data/media";
+---
+
+<BaseLayout title="實績現場" description="文盈除蟲工地、住宅白蟻、地下室滅鼠、餐廳與校園現場紀錄。">
+  <header class="page-hero wrap">
+    <p class="eyebrow">FIELD NOTES</p>
+    <h1>現場紀錄。</h1>
+  </header>
+  <section class="section" style="padding-top:0">
+    <div class="wrap case-grid">
+      {
+        cases.map((item) => {
+          const img = photos[item.image as PhotoKey];
+          return (
+            <article class="case-card">
+              <Picture src={img} formats={["avif", "webp"]} alt={`${item.place}｜${item.title}`} widths={[800, 1400]} sizes="50vw" />
+              <figcaption>
+                <span>{item.place} · {item.service}</span>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </figcaption>
+            </article>
+          );
+        })
+      }
+    </div>
+  </section>
+</BaseLayout>

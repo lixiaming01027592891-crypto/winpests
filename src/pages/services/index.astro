@@ -1,0 +1,40 @@
+---
+import { Picture } from "astro:assets";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { site, services } from "../../data/site";
+import { photos, type PhotoKey } from "../../data/media";
+---
+
+<BaseLayout title="服務項目" description="白蟻防治、滅鼠、住家店面除蟲、工地與環境消毒。文盈除蟲勘查後施工。">
+  <header class="page-hero wrap">
+    <p class="eyebrow">SERVICES</p>
+    <h1>對蟲種，<br />不對噴霧。</h1>
+  </header>
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="service-grid">
+        {
+          services.map((item) => {
+            const img = photos[item.image as PhotoKey];
+            return (
+              <a class="service-card" href={`/services/${item.slug}/`}>
+                <div class="service-card__media">
+                  <Picture src={img} formats={["avif", "webp"]} alt={item.title} widths={[800, 1400]} sizes="50vw" />
+                </div>
+                <div class="service-card__body">
+                  <p class="eyebrow">{item.kicker}</p>
+                  <h3>{item.title}</h3>
+                  <p>{item.summary}</p>
+                </div>
+              </a>
+            );
+          })
+        }
+      </div>
+      <p class="mute" style="margin-top:2rem">
+        跳蚤、螞蟻、蚊蠅與其他室內害蟲，歸在住家與店面。機關、學校、社區歸在工地與環境消毒。
+        不確定蟲種，先打 {site.phoneDisplay}。
+      </p>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,57 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../data/site";
+
+---
+
+<BaseLayout title="聯絡文盈" description="免付費 0800-000-448，LINE 諮詢或留下現場狀況。">
+  <header class="page-hero wrap">
+    <p class="eyebrow">CONTACT</p>
+    <h1>說現場。</h1>
+  </header>
+  <section class="section" style="padding-top:0">
+    <div class="wrap contact-panel">
+      <div>
+        <p class="mute">最快是電話與 LINE。表單會開你的郵件程式寄到客服信箱。</p>
+        <ul class="contact-list">
+          <li><small>免付費</small><a href={site.phoneHref}>{site.phoneDisplay}</a></li>
+          <li><small>市話</small><a href={site.localPhoneHref}>{site.localPhoneDisplay}</a></li>
+          <li><small>LINE</small><a href={site.lineUrl} target="_blank" rel="noreferrer">開啟對話</a></li>
+          <li><small>信箱</small><a href={`mailto:${site.email}`}>{site.email}</a></li>
+          <li><small>{site.address.label}</small>{site.address.line}</li>
+          <li><small>時間</small>{site.hours}</li>
+        </ul>
+      </div>
+      <form data-mail>
+        <label>
+          <span>姓名</span>
+          <input type="text" name="name" required autocomplete="name" />
+        </label>
+        <label>
+          <span>電話</span>
+          <input type="tel" name="phone" required autocomplete="tel" />
+        </label>
+        <label>
+          <span>現場狀況</span>
+          <textarea name="note" required placeholder="蟲種、地址區域、住家或店面、方便勘查時段"></textarea>
+        </label>
+        <button class="btn btn-solid" type="submit">寄出需求</button>
+      </form>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const form = document.querySelector<HTMLFormElement>("[data-mail]");
+    if (!form || form.dataset.bound === "true") return;
+    form.dataset.bound = "true";
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const body = `姓名：${data.get("name")}\n電話：${data.get("phone")}\n\n${data.get("note")}`;
+      const href = `mailto:x24htry@gmail.com?subject=${encodeURIComponent("文盈除蟲｜勘查需求")}&body=${encodeURIComponent(body)}`;
+      window.location.href = href;
+    });
+  });
+</script>

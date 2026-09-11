@@ -1,0 +1,159 @@
+---
+import { Picture } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site, services, process, cases, faqs } from "../data/site";
+import { photos, type PhotoKey } from "../data/media";
+
+const featured = cases.slice(0, 6);
+---
+
+<BaseLayout>
+  <section class="hero">
+    <div class="hero__media">
+      <Picture
+        src={photos.hero}
+        formats={["avif", "webp"]}
+        alt="文盈技術人員於台灣工地進行病媒處理"
+        loading="eager"
+        fetchpriority="high"
+        widths={[720, 1080, 1600, 2400]}
+        sizes="100vw"
+      />
+    </div>
+    <div class="hero__copy">
+      <p class="eyebrow">WINPEST / TAIPEI · SINCE {site.founded}</p>
+      <h1>先找到蟲<br />從哪裡來。</h1>
+      <p class="hero__lead">
+        白蟻、老鼠、蟑螂與工地病媒，不是噴完就算。文盈從勘查開始，對準通道與孳生源再施工。
+      </p>
+      <div class="hero__cta">
+        <a class="btn btn-solid" href={site.phoneHref}>免付費 {site.phoneDisplay}</a>
+        <a class="btn" href={site.lineUrl} target="_blank" rel="noreferrer">LINE 說明現場</a>
+      </div>
+    </div>
+    <div class="hero__meta">
+      <span><b>{site.founded}</b> 設立</span>
+      <span><b>{site.taxId}</b> 統編</span>
+      <span><b>病媒防治業</b> 登記</span>
+      <span><b>環境用藥零售</b></span>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">SERVICES</p>
+          <h2>四件事，<br />做徹底。</h2>
+        </div>
+        <p class="mute">
+          不把所有蟲害收成同一桶藥。白蟻看結構，滅鼠看通道，店面看打烊時段，工地看積水。
+        </p>
+      </div>
+      <div class="service-grid">
+        {
+          services.map((item) => {
+            const img = photos[item.image as PhotoKey];
+            return (
+              <a class="service-card" href={`/services/${item.slug}/`}>
+                <div class="service-card__media">
+                  <Picture src={img} formats={["avif", "webp"]} alt={item.title} widths={[640, 960, 1400]} sizes="(min-width: 980px) 50vw, 100vw" />
+                </div>
+                <div class="service-card__body">
+                  <p class="eyebrow">{item.kicker}</p>
+                  <h3>{item.title}</h3>
+                  <p>{item.lead}</p>
+                  <span class="btn">了解工法</span>
+                </div>
+              </a>
+            );
+          })
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-light" id="process">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">METHOD</p>
+          <h2>勘查，<br />才報價。</h2>
+        </div>
+        <p class="mute">現場沒看過，不承諾「一次清光」。流程短，每一步都對得上電話裡說的話。</p>
+      </div>
+      <div class="process">
+        {
+          process.map((step) => (
+            <article>
+              <b>{step.n}</b>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="cases">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">FIELD</p>
+          <h2>現場。</h2>
+        </div>
+        <p class="mute">工地、透天、社區地下室、小吃店與校園走廊。台灣的蟲害發生在這些地方。</p>
+      </div>
+      <div class="case-grid">
+        {
+          featured.map((item) => {
+            const img = photos[item.image as PhotoKey];
+            return (
+              <a class="case-card" href="/cases/">
+                <Picture src={img} formats={["avif", "webp"]} alt={`${item.place}｜${item.title}`} widths={[640, 1200, 1800]} sizes="50vw" />
+                <figcaption>
+                  <span>{item.place} · {item.service}</span>
+                  <h3>{item.title}</h3>
+                </figcaption>
+              </a>
+            );
+          })
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-light">
+    <div class="wrap split">
+      <figure>
+        <Picture src={photos.equipment} formats={["avif", "webp"]} alt="專業防治機具與餌站" widths={[800, 1200]} sizes="50vw" />
+      </figure>
+      <div>
+        <p class="eyebrow">TRUST</p>
+        <h2>合法用藥，<br />現場可出示。</h2>
+        <p class="mute">
+          文盈蟲害防治企業社，負責人{site.owner}，統編 {site.taxId}。營業項目含病媒防治業與環境用藥零售業。施工時可要求查看許可執照與用藥名稱。不在網頁上自稱第一品牌。
+        </p>
+        <p>
+          <a class="btn btn-dark" href="/about/">關於文盈</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-light" style="padding-top:0">
+    <div class="wrap faq">
+      <p class="eyebrow">FAQ</p>
+      <h2>先問這些。</h2>
+      {
+        faqs.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

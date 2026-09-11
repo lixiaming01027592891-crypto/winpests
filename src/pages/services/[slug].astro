@@ -1,0 +1,41 @@
+---
+import { Picture } from "astro:assets";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { services, site, getService } from "../../data/site";
+import { photos, type PhotoKey } from "../../data/media";
+
+export function getStaticPaths() {
+  return services.map((item) => ({ params: { slug: item.slug } }));
+}
+
+const { slug } = Astro.params;
+const service = getService(slug ?? "");
+if (!service) throw new Error("missing service");
+const img = photos[service.image as PhotoKey];
+---
+
+<BaseLayout title={service.title} description={service.summary}>
+  <header class="page-hero wrap">
+    <p class="eyebrow">{service.kicker}</p>
+    <h1>{service.title}</h1>
+  </header>
+  <section class="section" style="padding-top:0">
+    <div class="wrap split">
+      <figure>
+        <Picture src={img} formats={["avif", "webp"]} alt={service.title} widths={[900, 1400]} sizes="50vw" />
+      </figure>
+      <div>
+        <p class="mute">{service.lead}</p>
+        {service.body.map((p) => <p>{p}</p>)}
+        <p class="eyebrow" style="margin-top:1.5rem">適合</p>
+        <ul>
+          {service.suitable.map((item) => <li>{item}</li>)}
+        </ul>
+        <p style="margin-top:1.5rem; display:flex; gap:0.6rem; flex-wrap:wrap">
+          <a class="btn btn-solid" href={site.phoneHref}>{site.phoneDisplay}</a>
+          <a class="btn" href="/contact/">預約勘查</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

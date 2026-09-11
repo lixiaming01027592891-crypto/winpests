@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../data/site";
+---
+
+<BaseLayout title="隱私權" description="文盈除蟲網站隱私權說明。">
+  <header class="page-hero wrap">
+    <p class="eyebrow">NOTE</p>
+    <h1>隱私權。</h1>
+  </header>
+  <section class="section" style="padding-top:0">
+    <div class="wrap" style="max-width:40rem">
+      <p>本站為形象與聯絡用途。透過電話、LINE 或表單提供的姓名、電話與現場描述，僅用於回覆勘查與施工安排。</p>
+      <p>不出售個資。案件結束後依營運需要保存施工紀錄。若要查詢或刪除資料，請來信 {site.email} 或撥打 {site.phoneDisplay}。</p>
+      <p>本站使用必要的主機紀錄與可選的流量統計，不以第三方廣告追蹤為目的。</p>
+    </div>
+  </section>
+</BaseLayout>
