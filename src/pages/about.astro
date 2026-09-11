@@ -5,43 +5,43 @@ import { site } from "../data/site";
 import { photos } from "../data/media";
 ---
 
-<BaseLayout title="關於文盈" description="文盈蟲害防治企業社，2002 年設立於新北板橋。品牌名來自蚊蠅蟲害防治的諧音。">
+<BaseLayout title="關於文盈" description="文盈蟲害防治企業社，2002 年在新北板橋設立。住家、店面、工地都接。">
   <header class="page-hero wrap">
-    <p class="eyebrow">STUDIO</p>
-    <h1>文盈，<br />穩贏的諧音。</h1>
+    <p class="eyebrow">關於</p>
+    <h1>板橋一間，做了二十多年。</h1>
   </header>
   <section class="section" style="padding-top:0">
     <div class="wrap split">
       <div>
         <p>
-          「文盈」取自「蚊蠅蟲害防治」，讀起來也像「穩贏」。登記名稱是{site.legalName}，負責人{site.owner}，{site.founded} 年設立於板橋，統編 {site.taxId}。
+          「文盈」是蚊蠅的諧音，有人也念成穩贏。登記名稱是{site.legalName}，負責人{site.owner}，{site.founded} 年在板橋設立，統編 {site.taxId}。
         </p>
         <p class="mute">
-          這是一間獨資企業社，不是連鎖集團。接住家、店面、工地與機關。勘查後才報價。白蟻案件對外提供長天期施工保固，條件寫在合約裡。
+          就是一間做防治的企業社，不是連鎖。住家、店面、工地都接。白蟻案件有長天期保固，條件寫在合約裡。
         </p>
         <p class="mute">
-          營業項目含病媒防治業與環境用藥零售業。委託前可要求出示許可執照。我們不在網站上放無法核對的獎項與客戶名單。
+          營業項目包含病媒防治和環境用藥零售。你要看出執照，我們就拿出來。
         </p>
         <p>
-          登記地址：{site.address.line}<br />
+          {site.address.label}：{site.address.line}<br />
           {site.taipeiPoint.label}：{site.taipeiPoint.line}
         </p>
       </div>
       <figure>
-        <Picture src={photos.team} formats={["avif", "webp"]} alt="文盈團隊於台北巷弄現場討論施工範圍" widths={[900, 1400]} sizes="50vw" />
+        <Picture src={photos.team} formats={["avif", "webp"]} alt="文盈團隊在台北巷弄討論施工範圍" widths={[900, 1400]} sizes="50vw" />
       </figure>
     </div>
   </section>
   <section class="section" style="padding-top:0">
     <div class="wrap split split--invert">
       <figure>
-        <Picture src={photos.termiteMacro} formats={["avif", "webp"]} alt="木材白蟻危害特寫" widths={[800, 1200]} sizes="50vw" />
+        <Picture src={photos.termiteMacro} formats={["avif", "webp"]} alt="技術人員在住家查看木作與踢腳" widths={[800, 1200]} sizes="50vw" />
       </figure>
       <div>
-        <p class="eyebrow">WHY</p>
-        <h2>對準通道，<br />才叫防治。</h2>
+        <p class="eyebrow">怎麼做</p>
+        <h2>先看現場，再決定用什麼方法</h2>
         <p class="mute">
-          台灣的蟲害長在磁磚縫、管道間、工地積水與木樑交接。國際一線工業服務公司把現場勘查當標準作業，不是把藥桶當產品。文盈用同一套紀律：先看，再動。
+          蟲會走磁磚縫、管道間、工地積水和木頭交接的地方。我們習慣先到場，不把一桶藥當成全部答案。
         </p>
       </div>
     </div>

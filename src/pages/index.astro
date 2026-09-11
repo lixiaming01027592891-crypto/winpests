@@ -21,14 +21,14 @@ const featured = cases.slice(0, 6);
       />
     </div>
     <div class="hero__copy">
-      <p class="eyebrow">WINPEST / TAIPEI · SINCE {site.founded}</p>
-      <h1>先找到蟲<br />從哪裡來。</h1>
+      <p class="eyebrow">新北板橋 · {site.founded} 年設立</p>
+      <h1>家裡有蟲，<br />先看它從哪裡來。</h1>
       <p class="hero__lead">
-        白蟻、老鼠、蟑螂與工地病媒，不是噴完就算。文盈從勘查開始，對準通道與孳生源再施工。
+        白蟻、老鼠、蟑螂，或工地開始積水生蚊。打個電話說一下現場，我們再跟你約時間。
       </p>
       <div class="hero__cta">
         <a class="btn btn-solid" href={site.phoneHref}>免付費 {site.phoneDisplay}</a>
-        <a class="btn" href={site.lineUrl} target="_blank" rel="noreferrer">LINE 說明現場</a>
+        <a class="btn" href={site.lineUrl} target="_blank" rel="noreferrer">用 LINE 說現場</a>
       </div>
     </div>
     <div class="hero__meta">
@@ -43,11 +43,11 @@ const featured = cases.slice(0, 6);
     <div class="wrap">
       <div class="section-head">
         <div>
-          <p class="eyebrow">SERVICES</p>
-          <h2>四件事，<br />做徹底。</h2>
+          <p class="eyebrow">服務</p>
+          <h2>常見的四種情況</h2>
         </div>
         <p class="mute">
-          不把所有蟲害收成同一桶藥。白蟻看結構，滅鼠看通道，店面看打烊時段，工地看積水。
+          作法不一樣。白蟻看木頭，老鼠看通道，店面看打烊以後，工地看積水。
         </p>
       </div>
       <div class="service-grid">
@@ -63,7 +63,7 @@ const featured = cases.slice(0, 6);
                   <p class="eyebrow">{item.kicker}</p>
                   <h3>{item.title}</h3>
                   <p>{item.lead}</p>
-                  <span class="btn">了解工法</span>
+                  <span class="btn">看這項怎麼做</span>
                 </div>
               </a>
             );
@@ -77,10 +77,10 @@ const featured = cases.slice(0, 6);
     <div class="wrap">
       <div class="section-head">
         <div>
-          <p class="eyebrow">METHOD</p>
-          <h2>勘查，<br />才報價。</h2>
+          <p class="eyebrow">怎麼配合</p>
+          <h2>先看過，才報價</h2>
         </div>
-        <p class="mute">現場沒看過，不承諾「一次清光」。流程短，每一步都對得上電話裡說的話。</p>
+        <p class="mute">白蟻和老鼠尤其是這樣。電話裡能講清楚的，我們也會直說。</p>
       </div>
       <div class="process">
         {
@@ -100,10 +100,10 @@ const featured = cases.slice(0, 6);
     <div class="wrap">
       <div class="section-head">
         <div>
-          <p class="eyebrow">FIELD</p>
-          <h2>現場。</h2>
+          <p class="eyebrow">現場</p>
+          <h2>這些地方我們常去</h2>
         </div>
-        <p class="mute">工地、透天、社區地下室、小吃店與校園走廊。台灣的蟲害發生在這些地方。</p>
+        <p class="mute">工地、透天、社區地下室、小吃店、學校走廊。台灣的蟲，多半出在這些地方。</p>
       </div>
       <div class="case-grid">
         {
@@ -130,13 +130,13 @@ const featured = cases.slice(0, 6);
         <Picture src={photos.equipment} formats={["avif", "webp"]} alt="專業防治機具與餌站" widths={[800, 1200]} sizes="50vw" />
       </figure>
       <div>
-        <p class="eyebrow">TRUST</p>
-        <h2>合法用藥，<br />現場可出示。</h2>
+        <p class="eyebrow">登記資料</p>
+        <h2>用藥合法，現場可以給你看</h2>
         <p class="mute">
-          文盈蟲害防治企業社，負責人{site.owner}，統編 {site.taxId}。營業項目含病媒防治業與環境用藥零售業。施工時可要求查看許可執照與用藥名稱。不在網頁上自稱第一品牌。
+          文盈蟲害防治企業社，負責人{site.owner}，統編 {site.taxId}。做病媒防治和環境用藥零售。施工時你可以要求看出執照和藥名。
         </p>
         <p>
-          <a class="btn btn-dark" href="/about/">關於文盈</a>
+          <a class="btn btn-dark" href="/about/">關於這間社</a>
         </p>
       </div>
     </div>
@@ -144,8 +144,8 @@ const featured = cases.slice(0, 6);
 
   <section class="section section-light" style="padding-top:0">
     <div class="wrap faq">
-      <p class="eyebrow">FAQ</p>
-      <h2>先問這些。</h2>
+      <p class="eyebrow">常見問題</p>
+      <h2>常被問到的</h2>
       {
         faqs.map((item) => (
           <details>

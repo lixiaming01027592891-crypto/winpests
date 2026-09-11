@@ -54,7 +54,8 @@ img { width: 100%; height: auto; }
 .hero__media img,
 .service-card__media img,
 .case-card img,
-.split figure img {
+.split figure img,
+.page-figure img {
   height: 100%;
   object-fit: cover;
 }
@@ -106,9 +107,9 @@ main, .site-footer {
 
 h1, h2, h3 {
   font-family: var(--display);
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.12;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.22;
   margin: 0;
 }
 
@@ -245,18 +246,21 @@ h1, h2, h3 {
 .hero__copy {
   position: relative;
   z-index: 2;
-  max-width: 18ch;
+  max-width: min(38rem, 92vw);
 }
 .hero h1 {
-  font-size: clamp(3.4rem, 9vw, 8.2rem);
-  line-height: 0.92;
-  letter-spacing: -0.05em;
+  font-size: clamp(2.6rem, 6.4vw, 4.8rem);
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  font-weight: 500;
 }
 .hero__lead {
-  max-width: 34rem;
-  margin: 1.4rem 0 2rem;
+  max-width: 32rem;
+  margin: 1.35rem 0 2rem;
   color: var(--mute);
-  font-size: 1.02rem;
+  font-size: 1.08rem;
+  line-height: 1.9;
+  letter-spacing: 0.02em;
 }
 .hero__cta { display: flex; flex-wrap: wrap; gap: 0.7rem; }
 .hero__meta {
@@ -293,8 +297,15 @@ h1, h2, h3 {
   align-items: end;
 }
 .section-head h2 {
-  font-size: clamp(2.2rem, 5vw, 4.4rem);
-  letter-spacing: -0.04em;
+  font-size: clamp(2rem, 4.4vw, 3.4rem);
+  letter-spacing: -0.02em;
+  line-height: 1.22;
+}
+.section-head .mute {
+  max-width: 34rem;
+  font-size: 1.05rem;
+  line-height: 1.85;
+  letter-spacing: 0.02em;
 }
 .mute { color: var(--mute); }
 
@@ -328,7 +339,13 @@ h1, h2, h3 {
   font-size: clamp(1.8rem, 3vw, 2.8rem);
   margin: 0.35rem 0 0.6rem;
 }
-.service-card p { margin: 0 0 1rem; color: var(--mute); max-width: 36rem; }
+.service-card p {
+  margin: 0 0 1.1rem;
+  color: var(--mute);
+  max-width: 34rem;
+  line-height: 1.75;
+  letter-spacing: 0.02em;
+}
 
 .process {
   display: grid;
@@ -346,8 +363,8 @@ h1, h2, h3 {
   color: var(--copper-2);
   letter-spacing: 0.18em;
 }
-.process h3 { font-size: 1.35rem; margin: 0.7rem 0 0.5rem; }
-.process p { margin: 0; font-size: 0.92rem; }
+.process h3 { font-size: 1.28rem; margin: 0.7rem 0 0.55rem; font-weight: 500; }
+.process p { margin: 0; font-size: 0.95rem; line-height: 1.75; }
 
 .case-grid {
   display: grid;
@@ -405,7 +422,13 @@ h1, h2, h3 {
 .faq summary::-webkit-details-marker { display: none; }
 .faq summary::after { content: "+"; font-family: var(--mono); color: var(--copper-2); }
 .faq details[open] summary::after { content: "–"; }
-.faq p { margin: 0.7rem 0 0; max-width: 46rem; }
+.faq h2 { margin: 0 0 1.4rem; }
+.faq p {
+  margin: 0.75rem 0 0.2rem;
+  max-width: 38rem;
+  line-height: 1.85;
+  letter-spacing: 0.02em;
+}
 
 .contact-panel {
   display: grid;
@@ -454,15 +477,51 @@ input:focus, textarea:focus { border-color: var(--copper); }
 textarea { min-height: 8rem; resize: vertical; }
 
 .page-hero {
-  padding: 8.5rem var(--gutter) 3rem;
+  padding: 8.5rem var(--gutter) 2.4rem;
   display: grid;
-  gap: 1rem;
-  max-width: 18ch;
+  gap: 0.85rem;
+  max-width: min(40rem, 92vw);
 }
 .page-hero h1 {
-  font-size: clamp(3rem, 8vw, 6.4rem);
-  letter-spacing: -0.05em;
+  font-size: clamp(2.3rem, 5.6vw, 3.8rem);
+  letter-spacing: -0.02em;
+  line-height: 1.22;
+  font-weight: 500;
 }
+.page-figure {
+  width: var(--page);
+  margin: 0 auto 2.8rem;
+  padding-inline: var(--gutter);
+}
+.page-figure,
+.page-figure img {
+  max-height: 58vh;
+  min-height: 280px;
+  object-fit: cover;
+}
+.prose {
+  max-width: 38rem;
+  font-size: 1.08rem;
+  line-height: 1.95;
+  letter-spacing: 0.03em;
+}
+.prose p { margin: 0 0 1.15em; }
+.prose .lead {
+  font-size: 1.18rem;
+  line-height: 1.8;
+  color: var(--mute);
+}
+.prose ul {
+  margin: 0 0 1.4rem;
+  padding-left: 1.2rem;
+  line-height: 1.9;
+}
+.split > div p {
+  max-width: 36rem;
+  line-height: 1.9;
+  letter-spacing: 0.02em;
+}
+.split > div p + p { margin-top: 1rem; }
 
 .float-cta {
   position: fixed;
@@ -509,7 +568,7 @@ textarea { min-height: 8rem; resize: vertical; }
   .process article { border-right: 0; border-bottom: 1px solid var(--line-dark); padding: 1.2rem 0; }
   .case-card:nth-child(1), .case-card:nth-child(4) { grid-column: auto; grid-row: auto; }
   .case-grid { grid-auto-rows: 240px; }
-  .hero h1 { font-size: clamp(3rem, 14vw, 4.6rem); }
+  .hero h1 { font-size: clamp(2.2rem, 10vw, 3.2rem); }
   .float-cta { left: 0; right: 0; bottom: 0; padding: 0.6rem; background: rgba(12,14,13,0.92); }
   .float-cta a { flex: 1; }
   .site-footer { padding-bottom: 7.5rem; }

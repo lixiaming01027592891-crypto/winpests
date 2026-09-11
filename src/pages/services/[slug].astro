@@ -19,23 +19,21 @@ const img = photos[service.image as PhotoKey];
     <p class="eyebrow">{service.kicker}</p>
     <h1>{service.title}</h1>
   </header>
+  <figure class="page-figure">
+    <Picture src={img} formats={["avif", "webp"]} alt={service.title} widths={[900, 1600]} sizes="92vw" />
+  </figure>
   <section class="section" style="padding-top:0">
-    <div class="wrap split">
-      <figure>
-        <Picture src={img} formats={["avif", "webp"]} alt={service.title} widths={[900, 1400]} sizes="50vw" />
-      </figure>
-      <div>
-        <p class="mute">{service.lead}</p>
-        {service.body.map((p) => <p>{p}</p>)}
-        <p class="eyebrow" style="margin-top:1.5rem">適合</p>
-        <ul>
-          {service.suitable.map((item) => <li>{item}</li>)}
-        </ul>
-        <p style="margin-top:1.5rem; display:flex; gap:0.6rem; flex-wrap:wrap">
-          <a class="btn btn-solid" href={site.phoneHref}>{site.phoneDisplay}</a>
-          <a class="btn" href="/contact/">預約勘查</a>
-        </p>
-      </div>
+    <div class="wrap prose">
+      <p class="lead">{service.lead}</p>
+      {service.body.map((p) => <p>{p}</p>)}
+      <p class="eyebrow">比較常處理</p>
+      <ul>
+        {service.suitable.map((item) => <li>{item}</li>)}
+      </ul>
+      <p style="display:flex; gap:0.6rem; flex-wrap:wrap">
+        <a class="btn btn-solid" href={site.phoneHref}>{site.phoneDisplay}</a>
+        <a class="btn" href="/contact/">跟我們說現場</a>
+      </p>
     </div>
   </section>
 </BaseLayout>
