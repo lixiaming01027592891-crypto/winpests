@@ -2,6 +2,9 @@
 
 Astro 7.3.2 靜態站。GitHub 倉庫 `winpests` 為真相源，Cloudflare Pages 建置與發布。
 
+- Cloudflare 帳號：`199719sunnyqma@gmail.com`
+- Pages：https://winpests-5rt.pages.dev
+
 ```bash
 npm install
 npm run dev
