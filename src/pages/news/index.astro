@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("news")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+const dateText = (date: Date) => date.toLocaleDateString("zh-TW", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<BaseLayout title="防治筆記" description="文盈除蟲整理白蟻、滅鼠、住家店面與工地防治前可先準備的現場資料。">
+  <header class="page-hero news-intro">
+    <p class="eyebrow">Field notes</p>
+    <h1>先把現場說清楚。</h1>
+    <p class="mute">看到什麼、出現在哪裡、多久一次。這些筆記協助你在聯絡前整理線索；實際蟲種與作法仍由現場勘查判斷。</p>
+  </header>
+  <section class="section news-section">
+    <div class="wrap news-list">
+      {posts.map((post, index) => (
+        <a class="news-item" href={`/news/${post.id}/`}>
+          <span class="news-item__number">{String(index + 1).padStart(2, "0")}</span>
+          <div>
+            <time datetime={post.data.pubDate.toISOString()}>{dateText(post.data.pubDate)}</time>
+            <h2>{post.data.title}</h2>
+            <p>{post.data.description}</p>
+          </div>
+          <span class="news-item__arrow" aria-hidden="true">↗</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

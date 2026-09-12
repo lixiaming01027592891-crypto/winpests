@@ -33,6 +33,7 @@ export const nav = [
   { href: "/", label: "首頁" },
   { href: "/services/", label: "服務" },
   { href: "/cases/", label: "作業情境" },
+  { href: "/news/", label: "防治筆記" },
   { href: "/about/", label: "關於" },
   { href: "/contact/", label: "聯絡" },
 ] as const;
