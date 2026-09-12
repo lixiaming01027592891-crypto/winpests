@@ -12,5 +12,7 @@ npm run dev
 npm run build
 ```
 
+`www.winpesttw.com` 由 `winpesttw-www-redirect` Worker 永久轉址至根網域；設定保存在 `wrangler.www-redirect.jsonc`。
+
 - 免付費：0800-000-448
 - 登記：文盈蟲害防治企業社／15771791
