@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 
-const site = process.env.SITE_URL || "https://winpests.pages.dev";
+const site = process.env.SITE_URL || "https://winpesttw.com";
 
 export default defineConfig({
   site,

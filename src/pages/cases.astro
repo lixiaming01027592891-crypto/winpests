@@ -5,10 +5,11 @@ import { cases } from "../data/site";
 import { photos, type PhotoKey } from "../data/media";
 ---
 
-<BaseLayout title="實績現場" description="文盈除蟲工地、住宅白蟻、地下室滅鼠、餐廳與校園現場紀錄。">
+<BaseLayout title="常見作業情境" description="文盈除蟲常見的工地、住宅白蟻、地下室滅鼠、餐飲與校園作業情境；圖片為情境示意，實際作法依現場勘查。">
   <header class="page-hero wrap">
-    <p class="eyebrow">現場</p>
-    <h1>這些地方我們常去。</h1>
+    <p class="eyebrow">作業情境</p>
+    <h1>常見的作業場域</h1>
+    <p class="mute">以下圖片為情境示意。每個現場的蟲害來源與處理方式不同，實際作法以勘查結果為準。</p>
   </header>
   <section class="section" style="padding-top:0">
     <div class="wrap case-grid">
@@ -17,7 +18,8 @@ import { photos, type PhotoKey } from "../data/media";
           const img = photos[item.image as PhotoKey];
           return (
             <article class="case-card">
-              <Picture src={img} formats={["avif", "webp"]} alt={`${item.place}｜${item.title}`} widths={[800, 1400]} sizes="50vw" />
+              <Picture src={img} formats={["avif", "webp"]} alt={`${item.place}｜${item.title}情境示意`} widths={[800, 1400]} sizes="50vw" />
+              <span class="image-note">情境示意</span>
               <figcaption>
                 <span>{item.place} · {item.service}</span>
                 <h3>{item.title}</h3>

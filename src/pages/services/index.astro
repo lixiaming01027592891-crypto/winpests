@@ -19,7 +19,8 @@ import { photos, type PhotoKey } from "../../data/media";
             return (
               <a class="service-card" href={`/services/${item.slug}/`}>
                 <div class="service-card__media">
-                  <Picture src={img} formats={["avif", "webp"]} alt={item.title} widths={[800, 1400]} sizes="50vw" />
+                  <Picture src={img} formats={["avif", "webp"]} alt={`${item.title}情境示意`} widths={[800, 1400]} sizes="50vw" />
+                  <span class="image-note">情境示意</span>
                 </div>
                 <div class="service-card__body">
                   <p class="eyebrow">{item.kicker}</p>

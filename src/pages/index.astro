@@ -13,12 +13,13 @@ const featured = cases.slice(0, 6);
       <Picture
         src={photos.hero}
         formats={["avif", "webp"]}
-        alt="文盈技術人員於台灣工地進行病媒處理"
+        alt="工地病媒處理情境示意"
         loading="eager"
         fetchpriority="high"
         widths={[720, 1080, 1600, 2400]}
         sizes="100vw"
       />
+      <span class="image-note">情境示意</span>
     </div>
     <div class="hero__copy">
       <p class="eyebrow">新北板橋 · {site.founded} 年設立</p>
@@ -57,7 +58,8 @@ const featured = cases.slice(0, 6);
             return (
               <a class="service-card" href={`/services/${item.slug}/`}>
                 <div class="service-card__media">
-                  <Picture src={img} formats={["avif", "webp"]} alt={item.title} widths={[640, 960, 1400]} sizes="(min-width: 980px) 50vw, 100vw" />
+                  <Picture src={img} formats={["avif", "webp"]} alt={`${item.title}情境示意`} widths={[640, 960, 1400]} sizes="(min-width: 980px) 50vw, 100vw" />
+                  <span class="image-note">情境示意</span>
                 </div>
                 <div class="service-card__body">
                   <p class="eyebrow">{item.kicker}</p>
@@ -100,10 +102,10 @@ const featured = cases.slice(0, 6);
     <div class="wrap">
       <div class="section-head">
         <div>
-          <p class="eyebrow">現場</p>
-          <h2>這些地方我們常去</h2>
+          <p class="eyebrow">作業情境</p>
+          <h2>常見的作業場域</h2>
         </div>
-        <p class="mute">工地、透天、社區地下室、小吃店、學校走廊。台灣的蟲，多半出在這些地方。</p>
+        <p class="mute">工地、透天、社區地下室、餐飲後場、學校走廊。圖片為情境示意，實際作法依現場勘查。</p>
       </div>
       <div class="case-grid">
         {
@@ -111,7 +113,8 @@ const featured = cases.slice(0, 6);
             const img = photos[item.image as PhotoKey];
             return (
               <a class="case-card" href="/cases/">
-                <Picture src={img} formats={["avif", "webp"]} alt={`${item.place}｜${item.title}`} widths={[640, 1200, 1800]} sizes="50vw" />
+                <Picture src={img} formats={["avif", "webp"]} alt={`${item.place}｜${item.title}情境示意`} widths={[640, 1200, 1800]} sizes="50vw" />
+                <span class="image-note">情境示意</span>
                 <figcaption>
                   <span>{item.place} · {item.service}</span>
                   <h3>{item.title}</h3>
@@ -127,7 +130,8 @@ const featured = cases.slice(0, 6);
   <section class="section section-light">
     <div class="wrap split">
       <figure>
-        <Picture src={photos.equipment} formats={["avif", "webp"]} alt="專業防治機具與餌站" widths={[800, 1200]} sizes="50vw" />
+        <Picture src={photos.equipment} formats={["avif", "webp"]} alt="防治機具與餌站情境示意" widths={[800, 1200]} sizes="50vw" />
+        <figcaption class="image-note">情境示意</figcaption>
       </figure>
       <div>
         <p class="eyebrow">登記資料</p>

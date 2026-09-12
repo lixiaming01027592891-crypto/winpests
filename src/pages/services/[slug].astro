@@ -12,15 +12,29 @@ const { slug } = Astro.params;
 const service = getService(slug ?? "");
 if (!service) throw new Error("missing service");
 const img = photos[service.image as PhotoKey];
+const serviceSchema = {
+  "@type": "Service",
+  "@id": new URL(`${Astro.url.pathname}#service`, Astro.site).href,
+  name: service.title,
+  serviceType: service.title,
+  description: service.summary,
+  url: new URL(Astro.url.pathname, Astro.site).href,
+  provider: { "@id": new URL("/#business", Astro.site).href },
+  areaServed: [
+    { "@type": "AdministrativeArea", name: "台北市" },
+    { "@type": "AdministrativeArea", name: "新北市" },
+  ],
+};
 ---
 
-<BaseLayout title={service.title} description={service.summary}>
+<BaseLayout title={service.title} description={service.summary} structuredData={serviceSchema}>
   <header class="page-hero wrap">
     <p class="eyebrow">{service.kicker}</p>
     <h1>{service.title}</h1>
   </header>
   <figure class="page-figure">
-    <Picture src={img} formats={["avif", "webp"]} alt={service.title} widths={[900, 1600]} sizes="92vw" />
+    <Picture src={img} formats={["avif", "webp"]} alt={`${service.title}情境示意`} widths={[900, 1600]} sizes="92vw" />
+    <figcaption class="image-note">情境示意</figcaption>
   </figure>
   <section class="section" style="padding-top:0">
     <div class="wrap prose">

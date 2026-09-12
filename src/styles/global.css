@@ -51,6 +51,25 @@ body::before {
 
 img, svg { display: block; max-width: 100%; }
 img { width: 100%; height: auto; }
+figure { position: relative; }
+.image-note {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 4;
+  display: inline-flex;
+  width: auto;
+  margin: 0;
+  padding: 0.28rem 0.5rem;
+  background: rgba(12, 14, 13, 0.78);
+  border: 1px solid rgba(231, 225, 212, 0.28);
+  color: var(--bone);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-style: normal;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+}
 .hero__media img,
 .service-card__media img,
 .case-card img,
@@ -394,6 +413,14 @@ h1, h2, h3 {
   text-transform: uppercase;
   color: var(--copper);
   margin-bottom: 0.3rem;
+}
+.case-card > .image-note {
+  top: 0.75rem;
+  right: 0.75rem;
+  margin: 0;
+  color: var(--bone);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
 }
 
 .split {
