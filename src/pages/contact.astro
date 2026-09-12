@@ -1,53 +1,157 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { site } from "../data/site";
-
+import { site, services } from "../data/site";
 ---
 
-<BaseLayout title="聯絡文盈" description="免付費 0800-000-448，LINE 諮詢或留下現場狀況。">
-  <header class="page-hero wrap">
+<BaseLayout title="聯絡文盈" description="免付費 0800-000-448，LINE 諮詢或整理現場狀況後再聯絡文盈除蟲。">
+  <header class="page-hero wrap contact-hero">
     <p class="eyebrow">聯絡</p>
     <h1>跟我們說現場。</h1>
+    <p class="mute">急著處理可以直接打電話或加 LINE；想先把資訊整理好，也可以用下面的需求表。</p>
+
+    <nav class="contact-choices" aria-label="聯絡方式">
+      <a href={site.phoneHref}>
+        <small>現在直接說</small>
+        <strong>{site.phoneDisplay}</strong>
+        <span>免付費電話</span>
+      </a>
+      <a href={site.lineUrl} target="_blank" rel="noreferrer">
+        <small>傳照片比較快</small>
+        <strong>開啟 LINE</strong>
+        <span>說明位置與出現頻率</span>
+      </a>
+      <a href="#request">
+        <small>先整理一下</small>
+        <strong>留下需求</strong>
+        <span>整理完成後再選 LINE 或 Email</span>
+      </a>
+    </nav>
   </header>
-  <section class="section" style="padding-top:0">
+
+  <section class="section contact-section" id="request">
     <div class="wrap contact-panel">
-      <div>
-        <p class="mute">最快是打電話或加 LINE。下面表單會打開你的郵件，寄到客服信箱。</p>
+      <form data-request-form data-email={site.email}>
+        <div class="form-heading">
+          <p class="eyebrow">現場摘要</p>
+          <h2>把需要的資訊一次說清楚</h2>
+          <p class="mute">填完會先整理並複製內容，不會自動送出。你可以再選擇貼到 LINE，或用 Email 寄出。</p>
+        </div>
+
+        <div class="form-grid">
+          <label>
+            <span>姓名</span>
+            <input type="text" name="name" required autocomplete="name" />
+          </label>
+          <label>
+            <span>電話</span>
+            <input type="tel" name="phone" required autocomplete="tel" inputmode="tel" />
+          </label>
+          <label>
+            <span>想處理的情況</span>
+            <select name="service" required>
+              <option value="">請選擇</option>
+              <option value="不確定，請協助判斷">不確定，請協助判斷</option>
+              {services.map((item) => <option value={item.title}>{item.title}</option>)}
+            </select>
+          </label>
+          <label>
+            <span>地址區域</span>
+            <input type="text" name="area" required autocomplete="address-level2" placeholder="例如：板橋區、萬華區" />
+          </label>
+          <label class="form-grid__wide">
+            <span>方便聯絡或勘查的時間</span>
+            <input type="text" name="time" placeholder="例如：平日 18:00 後" />
+          </label>
+          <label class="form-grid__wide">
+            <span>現場狀況</span>
+            <textarea name="note" required placeholder="看到的位置、出現頻率、住家或店面；不確定的地方可以直接寫不知道。"></textarea>
+          </label>
+        </div>
+
+        <button class="btn btn-solid form-submit" type="submit">整理並複製需求</button>
+        <p class="form-privacy">這一步只在你的裝置上整理文字，不會把資料自動傳出去。</p>
+
+        <section class="request-result" data-request-result hidden aria-live="polite">
+          <p class="eyebrow">已整理</p>
+          <h3 data-copy-status>需求內容已準備好</h3>
+          <textarea readonly data-request-output aria-label="整理後的需求內容"></textarea>
+          <div class="request-result__actions">
+            <button class="btn" type="button" data-copy-again>再複製一次</button>
+            <a class="btn btn-solid" href={site.lineUrl} target="_blank" rel="noreferrer">打開 LINE 並貼上</a>
+            <a class="btn" data-email-link href={`mailto:${site.email}`}>改用 Email</a>
+          </div>
+        </section>
+      </form>
+
+      <aside class="contact-info" aria-label="公司聯絡資料">
+        <p class="eyebrow">公司資料</p>
+        <h2>聯絡與服務時間</h2>
         <ul class="contact-list">
           <li><small>免付費</small><a href={site.phoneHref}>{site.phoneDisplay}</a></li>
           <li><small>市話</small><a href={site.localPhoneHref}>{site.localPhoneDisplay}</a></li>
           <li><small>LINE</small><a href={site.lineUrl} target="_blank" rel="noreferrer">開啟對話</a></li>
           <li><small>信箱</small><a href={`mailto:${site.email}`}>{site.email}</a></li>
-          <li><small>{site.address.label}</small>{site.address.line}</li>
+          <li><small>{site.address.label}</small><a href={site.address.map} target="_blank" rel="noreferrer">{site.address.line}</a></li>
           <li><small>時間</small>{site.hours}</li>
         </ul>
-      </div>
-      <form data-mail>
-        <label>
-          <span>姓名</span>
-          <input type="text" name="name" required autocomplete="name" />
-        </label>
-        <label>
-          <span>電話</span>
-          <input type="tel" name="phone" required autocomplete="tel" />
-        </label>
-        <label>
-          <span>現場狀況</span>
-          <textarea name="note" required placeholder="蟲種、地址區域、住家或店面、方便勘查時段"></textarea>
-        </label>
-        <button class="btn btn-solid" type="submit">寄出需求</button>
-      </form>
+      </aside>
     </div>
   </section>
 </BaseLayout>
 
 <script>
-  const form = document.querySelector<HTMLFormElement>("[data-mail]");
-  form?.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const data = new FormData(form);
-    const body = `姓名：${data.get("name")}\n電話：${data.get("phone")}\n\n${data.get("note")}`;
-    const href = `mailto:x24htry@gmail.com?subject=${encodeURIComponent("文盈除蟲｜勘查需求")}&body=${encodeURIComponent(body)}`;
-    window.location.href = href;
-  });
+  let contactController: AbortController | undefined;
+
+  const setupContactForm = () => {
+    const form = document.querySelector<HTMLFormElement>("[data-request-form]");
+    const result = document.querySelector<HTMLElement>("[data-request-result]");
+    const output = document.querySelector<HTMLTextAreaElement>("[data-request-output]");
+    const status = document.querySelector<HTMLElement>("[data-copy-status]");
+    const copyAgain = document.querySelector<HTMLButtonElement>("[data-copy-again]");
+    const emailLink = document.querySelector<HTMLAnchorElement>("[data-email-link]");
+    if (!form || !result || !output || !status || !copyAgain || !emailLink) return;
+
+    contactController?.abort();
+    contactController = new AbortController();
+    const { signal } = contactController;
+
+    const buildMessage = () => {
+      const data = new FormData(form);
+      return [
+        "文盈除蟲｜現場需求",
+        `姓名：${data.get("name")}`,
+        `電話：${data.get("phone")}`,
+        `情況：${data.get("service")}`,
+        `區域：${data.get("area")}`,
+        `方便時間：${data.get("time") || "未指定"}`,
+        "",
+        `現場狀況：${data.get("note")}`,
+      ].join("\n");
+    };
+
+    const copyMessage = async () => {
+      try {
+        await navigator.clipboard.writeText(output.value);
+        status.textContent = "需求內容已複製，打開 LINE 後貼上即可";
+      } catch {
+        output.focus();
+        output.select();
+        status.textContent = "請長按或選取下方內容複製";
+      }
+    };
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      output.value = buildMessage();
+      const email = form.dataset.email ?? "";
+      emailLink.href = `mailto:${email}?subject=${encodeURIComponent("文盈除蟲｜勘查需求")}&body=${encodeURIComponent(output.value)}`;
+      result.hidden = false;
+      await copyMessage();
+      result.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, { signal });
+
+    copyAgain.addEventListener("click", copyMessage, { signal });
+  };
+
+  setupContactForm();
 </script>

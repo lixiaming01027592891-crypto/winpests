@@ -12,19 +12,36 @@ import { photos, type PhotoKey } from "../data/media";
     <p class="mute">以下圖片為情境示意。每個現場的蟲害來源與處理方式不同，實際作法以勘查結果為準。</p>
   </header>
   <section class="section" style="padding-top:0">
-    <div class="wrap case-grid">
+    <div class="wrap scenario-list">
       {
         cases.map((item) => {
           const img = photos[item.image as PhotoKey];
           return (
-            <article class="case-card">
-              <Picture src={img} formats={["avif", "webp"]} alt={`${item.place}｜${item.title}情境示意`} widths={[800, 1400]} sizes="50vw" />
-              <span class="image-note">情境示意</span>
-              <figcaption>
+            <article class="scenario-card" id={item.slug}>
+              <figure class="scenario-card__media">
+                <Picture src={img} formats={["avif", "webp"]} alt={`${item.place}｜${item.title}`} widths={[800, 1400]} sizes="(min-width: 980px) 48vw, 100vw" />
+                <figcaption class="image-note">圖像 · 情境示意</figcaption>
+              </figure>
+              <div class="scenario-card__body">
                 <span>{item.place} · {item.service}</span>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </figcaption>
+                <h2>{item.title}</h2>
+                <p class="mute">{item.text}</p>
+                <dl class="scenario-checks">
+                  <div>
+                    <dt>你可能看到</dt>
+                    <dd>{item.signal}</dd>
+                  </div>
+                  <div>
+                    <dt>到場先查</dt>
+                    <dd>{item.inspect}</dd>
+                  </div>
+                  <div>
+                    <dt>處理方向</dt>
+                    <dd>{item.direction}</dd>
+                  </div>
+                </dl>
+                <a class="btn" href="/contact/#request">說說你的現場</a>
+              </div>
             </article>
           );
         })

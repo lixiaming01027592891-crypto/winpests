@@ -12,6 +12,12 @@ const { slug } = Astro.params;
 const service = getService(slug ?? "");
 if (!service) throw new Error("missing service");
 const img = photos[service.image as PhotoKey];
+const guide = [
+  { n: "01", title: "你可能看到", items: service.signals },
+  { n: "02", title: "到場先查", items: service.inspection },
+  { n: "03", title: "處理方式", items: service.treatment },
+  { n: "04", title: "影響報價", items: service.pricing },
+];
 const serviceSchema = {
   "@type": "Service",
   "@id": new URL(`${Astro.url.pathname}#service`, Astro.site).href,
@@ -31,23 +37,56 @@ const serviceSchema = {
   <header class="page-hero wrap">
     <p class="eyebrow">{service.kicker}</p>
     <h1>{service.title}</h1>
+    <p class="mute">{service.summary}</p>
   </header>
   <figure class="page-figure">
-    <Picture src={img} formats={["avif", "webp"]} alt={`${service.title}情境示意`} widths={[900, 1600]} sizes="92vw" />
-    <figcaption class="image-note">情境示意</figcaption>
+    <Picture src={img} formats={["avif", "webp"]} alt={`${service.title}的作業畫面`} widths={[900, 1600]} sizes="92vw" />
+    <figcaption class="image-note">圖像 · 情境示意</figcaption>
   </figure>
   <section class="section" style="padding-top:0">
-    <div class="wrap prose">
-      <p class="lead">{service.lead}</p>
-      {service.body.map((p) => <p>{p}</p>)}
-      <p class="eyebrow">比較常處理</p>
-      <ul>
-        {service.suitable.map((item) => <li>{item}</li>)}
-      </ul>
-      <p style="display:flex; gap:0.6rem; flex-wrap:wrap">
+    <div class="wrap service-intro">
+      <div class="prose">
+        <p class="lead">{service.lead}</p>
+        {service.body.map((p) => <p>{p}</p>)}
+      </div>
+      <aside class="service-scope" aria-label={`${service.title}常見處理場域`}>
+        <p class="eyebrow">比較常處理</p>
+        <ul>
+          {service.suitable.map((item) => <li>{item}</li>)}
+        </ul>
+      </aside>
+    </div>
+
+    <div class="wrap field-guide">
+      <div class="section-head section-head--compact">
+        <div>
+          <p class="eyebrow">現場判斷</p>
+          <h2>先從線索開始</h2>
+        </div>
+        <p class="mute">以下是常見判斷方向，不用自己先下結論；把看到的位置和頻率告訴我們就可以。</p>
+      </div>
+      <div class="service-guide">
+        {guide.map((block) => (
+          <article>
+            <b>{block.n}</b>
+            <h3>{block.title}</h3>
+            <ul>
+              {block.items.map((item) => <li>{item}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+      <div class="service-next">
+        <div>
+          <p class="eyebrow">下一步</p>
+          <h2>不用先判斷是哪一種</h2>
+          <p class="mute">說明看到的位置、出現頻率與地址區域，我們會先問需要的資訊。</p>
+        </div>
+        <p class="service-next__actions">
         <a class="btn btn-solid" href={site.phoneHref}>{site.phoneDisplay}</a>
-        <a class="btn" href="/contact/">跟我們說現場</a>
-      </p>
+          <a class="btn" href="/contact/#request">跟我們說現場</a>
+        </p>
+      </div>
     </div>
   </section>
 </BaseLayout>
